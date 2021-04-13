@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta name="viewport" content="width=device-width" charset="UTF-8">
+		<title>Steven (FWD) - TicTacToe</title>
+		
+		<link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script type="text/javascript" src="webjars/jquery/1.9.1/jquery.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<script type="text/javascript" src="js/index.js"></script>
+	</head>
+	
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center header">
+					<h1>Welcome to TicTacToe Game</h1>
+					<hr>
+				</div>
+			</div>
+			
+			<br>
+			
+			<form action="#" th:action="@{/startGame}" method="POST" th:object="${game}" id="frm">
+				<div class="form-group">
+					<label for="dimensionNumber">Dimension (X-Y) <span class="text-danger">*</span></label>
+					<input type="number" th:field="*{dimensionNumber}" class="form-control" />
+				</div>
+				
+				<input type="button" class="btn btn-primary" id="btnStart" value="Start">
+			</form>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width" charset="UTF-8">
+		<title>Steven (FWD) - TicTacToe</title>
+		
+		<link rel="stylesheet" type="text/css" href="webjars/bootstrap/3.3.6/css/bootstrap.min.css">
+		<script type="text/javascript" src="webjars/jquery/1.9.1/jquery.min.js"></script>
+		
+		<link rel="stylesheet" type="text/css" href="css/tic_tac_toe.css">
+		<script type="text/javascript" src="js/tic_tac_toe.js"></script>
+	</head>
+	
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-xs-12 text-center header">
+					<h1>Steven (FWD) - TicTacToe</h1>
+					<button class="btn btn-primary playAgain">Rematch</button>
+					<a href="/" class="btn btn-success">Quit</a>
+				</div>
+			</div>
+			
+			<!-- Modal box -->
+			<div class="modal fade" id="gameModal" tabindex="-1" role="dialog">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title">Game Results</h4>
+						</div>
+						
+						<div class="modal-body">
+                            <p id="gameResults"></p>
+                        </div>
+                        
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- TicTacToe Body Section -->
+			
+			<div class="row text-center">
+                <div class="col-md-2 col-md-offset-3 col-xs-4 square" onclick="clicked('.row11')">
+                    <span class="row11"></span>
+                </div>
+                <div class="col-md-2 col-xs-4 square" onclick="clicked('.row12')">
+                    <span class="row12"></span>
+                </div>
+                <div class="col-md-2 col-xs-4 square" onclick="clicked('.row13')">
+                    <span class="row13"></span>
+                </div>
+            </div>
+            
+            <div class="row text-center">
+                <div class="col-md-2 col-md-offset-3 col-xs-4 square" onclick="clicked('.row21')">
+                    <span class="row21"></span>
+                </div>
+                <div class="col-md-2 col-xs-4 square" onclick="clicked('.row22')">
+                    <span class="row22"></span>
+                </div>
+                <div class="col-md-2 col-xs-4 square" onclick="clicked('.row23')">
+                    <span class="row23"></span>
+                </div>
+            </div>
+            
+            <div class="row text-center">
+                <div class="col-md-2 col-md-offset-3 col-xs-4 square" onclick="clicked('.row31')">
+                    <span class="row31"></span>
+                </div>
+                <div class="col-md-2 col-xs-4 square" onclick="clicked('.row32')">
+                    <span class="row32"></span>
+                </div>
+                <div class="col-md-2 col-xs-4 square" onclick="clicked('.row33')">
+                    <span class="row33"></span>
+                </div>
+            </div>
+		</div>	
+	</body>
+</html>
