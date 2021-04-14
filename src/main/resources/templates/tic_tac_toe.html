@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta name="viewport" content="width=device-width" charset="UTF-8">
 		<title>Steven (FWD) - TicTacToe</title>
@@ -16,8 +16,8 @@
 			<div class="row">
 				<div class="col-xs-12 text-center header">
 					<h1>Steven (FWD) - TicTacToe</h1>
-					<button class="btn btn-primary playAgain">Rematch</button>
-					<a href="/" class="btn btn-success">Quit</a>
+					<button id="btnRematch" class="btn btn-primary playAgain w-100">Rematch</button>
+					<button id="btnQuick" class="btn btn-danger quit w-100">Quit</button>
 				</div>
 			</div>
 			
@@ -40,44 +40,21 @@
 					</div>
 				</div>
 			</div>
-			
-			<!-- TicTacToe Body Section -->
-			
-			<div class="row text-center">
-                <div class="col-md-2 col-md-offset-3 col-xs-4 square" onclick="clicked('.row11')">
-                    <span class="row11"></span>
-                </div>
-                <div class="col-md-2 col-xs-4 square" onclick="clicked('.row12')">
-                    <span class="row12"></span>
-                </div>
-                <div class="col-md-2 col-xs-4 square" onclick="clicked('.row13')">
-                    <span class="row13"></span>
-                </div>
-            </div>
-            
-            <div class="row text-center">
-                <div class="col-md-2 col-md-offset-3 col-xs-4 square" onclick="clicked('.row21')">
-                    <span class="row21"></span>
-                </div>
-                <div class="col-md-2 col-xs-4 square" onclick="clicked('.row22')">
-                    <span class="row22"></span>
-                </div>
-                <div class="col-md-2 col-xs-4 square" onclick="clicked('.row23')">
-                    <span class="row23"></span>
-                </div>
-            </div>
-            
-            <div class="row text-center">
-                <div class="col-md-2 col-md-offset-3 col-xs-4 square" onclick="clicked('.row31')">
-                    <span class="row31"></span>
-                </div>
-                <div class="col-md-2 col-xs-4 square" onclick="clicked('.row32')">
-                    <span class="row32"></span>
-                </div>
-                <div class="col-md-2 col-xs-4 square" onclick="clicked('.row33')">
-                    <span class="row33"></span>
-                </div>
-            </div>
 		</div>	
+		
+		<!-- TicTacToe Body Section -->
+		<div class="text-center" th:each="x,iter: ${game.board.square}">
+			<div th:each="y, iter2: ${game.board.square[iter.index]}" 
+				class="square"
+				style="width: 200px; display: inline-block; vertical-align: bottom;"
+				th:attr="data-el_square=${iter.index} + '_' + ${iter2.index}">
+				<span th:text="${y}"></span>
+			</div>
+		</div>
+		
+		<!-- hidden input -->
+		<input type="hidden" id="txtPlayerTurn" th:value="${game.playerTurn}">
+		<input type="hidden" id="txtGameStatus" th:value="${game.statusType}">
+		<input type="hidden" id="txtAllowRequestAPI" value="YN_Y">
 	</body>
 </html>

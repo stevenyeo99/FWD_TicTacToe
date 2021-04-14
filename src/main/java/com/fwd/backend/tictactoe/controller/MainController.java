@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.fwd.backend.tictactoe.entity.Game;
 
@@ -21,9 +22,10 @@ public class MainController {
 	}
 	
 	@PostMapping("/startGame")
-	public String startGame(@ModelAttribute("game") Game game) {
-		System.out.println(game);
+	public String startGame(@ModelAttribute("game") Game game, RedirectAttributes redirectAttributes) {
 		
-		return "redirect:/TicTacToe";
+		redirectAttributes.addFlashAttribute("game", game);
+		
+		return "redirect:TicTacToe";
 	}
 }

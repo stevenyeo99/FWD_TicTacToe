@@ -1,5 +1,6 @@
 package com.fwd.backend.tictactoe.abstraction;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.fwd.backend.tictactoe.entity.Player;
@@ -7,11 +8,11 @@ import com.fwd.backend.tictactoe.enums.StatusType;
 
 public abstract class AbstractGame {
 	
-	private List<Player> listOfPlayers;
+	private List<Player> listOfPlayers = new ArrayList<Player>();
 	private StatusType statusType;
 	
 	public abstract void initializeGame();
-	public abstract StatusType getGameStatus();
+	public abstract void defineGameStatus();
 	public abstract void changePlayerTurn();
 	public abstract boolean checkIsGameDraw();
 	public abstract boolean checkIsGameWin();

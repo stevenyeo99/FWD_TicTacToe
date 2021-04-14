@@ -1,17 +1,14 @@
 package com.fwd.backend.tictactoe.entity;
 
 import com.fwd.backend.tictactoe.abstraction.AbstractGame;
+import com.fwd.backend.tictactoe.enums.PlayerType;
 import com.fwd.backend.tictactoe.enums.StatusType;
 
 public class Game extends AbstractGame {
 
 	private Board board;
-	
 	private int dimensionNumber;
-	
-	public Game() {
-		
-	}
+	private PlayerType playerTurn;
 
 	public Board getBoard() {
 		return board;
@@ -29,6 +26,27 @@ public class Game extends AbstractGame {
 		this.dimensionNumber = dimensionNumber;
 	}
 	
+	public PlayerType getPlayerTurn() {
+		return playerTurn;
+	}
+
+	public void setPlayerTurn(PlayerType playerTurn) {
+		this.playerTurn = playerTurn;
+	}
+	
+	/*************************************************************************/
+							  /* PERSONAL METHOD */
+	
+	/**
+	 * Count each player point
+	 */
+	public void countEachPlayerPoint() {
+		for (Player player : this.getListOfPlayers()) {
+			player.setTotalPoint((board.getTotalCountByMarkType(player.getPlayerType().toString())));
+		}
+	}
+	
+	
 	/*************************************************************************/
 							  /* IMPLEMENTATION */
 	
@@ -37,16 +55,38 @@ public class Game extends AbstractGame {
 	 */
 	@Override
 	public void initializeGame() {
+		Board board = new Board(this.dimensionNumber);
+		board.initializeBoard();
+		this.board = board;
+		this.playerTurn = PlayerType.X;
 		
+		// Player on game
+		boolean firstPlayer = true;
+		for (int i = 0; i < PlayerType.values().length; i++) {
+			// if enhancement need to choose which user as player can put if statement during loop.
+			this.getListOfPlayers().add(new Player(PlayerType.values()[i], firstPlayer, 0));
+			firstPlayer = false;
+		}
+		
+		// Game status
+		this.setStatusType(StatusType.PROGRESS);
 	}
 
 	/**
-	 * Get game status
+	 * define game status
 	 */
 	@Override
-	public StatusType getGameStatus() {
-		// TODO Auto-generated method stub
-		return null;
+	public void defineGameStatus() {
+		
+		StatusType status = StatusType.PROGRESS;
+		
+		if (checkIsGameWin()) {
+			status = StatusType.WIN;
+		} else if (checkIsGameDraw()) {
+			status = StatusType.DRAW;
+		}
+
+		this.setStatusType(status);
 	}
 
 	/**
@@ -54,8 +94,15 @@ public class Game extends AbstractGame {
 	 */
 	@Override
 	public void changePlayerTurn() {
-		// TODO Auto-generated method stub
-		
+		for (Player player : this.getListOfPlayers()) {
+			if (player.getIsPlayerTurn()) {
+				player.setIsPlayerTurn(false);
+			} else {
+				player.setIsPlayerTurn(true);
+				
+				playerTurn = player.getPlayerType();
+			}
+		}
 	}
 
 	/**
@@ -63,8 +110,13 @@ public class Game extends AbstractGame {
 	 */
 	@Override
 	public boolean checkIsGameDraw() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean isGameDraw = false;
+		
+		if (board.checkSquareIsFullMarked()) {
+			isGameDraw = true;
+		}
+		
+		return isGameDraw;
 	}
 
 	/**
@@ -72,8 +124,14 @@ public class Game extends AbstractGame {
 	 */
 	@Override
 	public boolean checkIsGameWin() {
-		// TODO Auto-generated method stub
-		return false;
+		boolean isGameWin = false;
+		
+		// check point is dominating row, col, diag
+		if (board.checkRowPointDomination() || board.checkColPointDomination() || board.checkDiagonalPointDomination()) {
+			isGameWin = true;
+		}
+		
+		return isGameWin;
 	}
 
 	/**
@@ -81,7 +139,6 @@ public class Game extends AbstractGame {
 	 */
 	@Override
 	public void rematchGame() {
-		// TODO Auto-generated method stub
-		
+		this.setStatusType(null);
 	}
 }

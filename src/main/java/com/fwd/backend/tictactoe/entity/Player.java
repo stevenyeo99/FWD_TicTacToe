@@ -9,7 +9,6 @@ public class Player {
 	private int totalPoint;
 	
 	public Player(PlayerType playerType, boolean isPlayerTurn, int totalPoint) {
-		super();
 		this.playerType = playerType;
 		this.isPlayerTurn = isPlayerTurn;
 		this.totalPoint = totalPoint;
@@ -23,11 +22,11 @@ public class Player {
 		this.playerType = playerType;
 	}
 
-	public boolean isPlayerTurn() {
+	public boolean getIsPlayerTurn() {
 		return isPlayerTurn;
 	}
 
-	public void setPlayerTurn(boolean isPlayerTurn) {
+	public void setIsPlayerTurn(boolean isPlayerTurn) {
 		this.isPlayerTurn = isPlayerTurn;
 	}
 
