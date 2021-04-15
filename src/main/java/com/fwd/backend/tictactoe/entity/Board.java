@@ -1,14 +1,9 @@
 package com.fwd.backend.tictactoe.entity;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.fwd.backend.tictactoe.abstraction.AbstractBoard;
 
 
 public class Board extends AbstractBoard {
-	
-	private final Logger LOGGER = LoggerFactory.getLogger(Board.class);
 	
 	// X-Y Coordinate
 	private String[][] square;
@@ -29,6 +24,9 @@ public class Board extends AbstractBoard {
 		this.square = square;
 	}
 
+	/******************************************************/
+	/* IMPLEMENTATION of ABSTRACT CLASS */
+	
 	@Override
 	public void initializeBoard() {
 		int size = square.length;
@@ -44,9 +42,6 @@ public class Board extends AbstractBoard {
 	public void drawSquare(int x, int y, String mark) {
 		square[x][y] = mark;
 	}
-
-	/******************************************************/
-	/* IMPLEMENTATION */
 	
 	/**
 	 * 

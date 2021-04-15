@@ -26,6 +26,6 @@ public class MainController {
 		
 		redirectAttributes.addFlashAttribute("game", game);
 		
-		return "redirect:TicTacToe";
+		return "redirect:ticTacToe";
 	}
 }

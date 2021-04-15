@@ -48,7 +48,7 @@ public class Game extends AbstractGame {
 	
 	
 	/*************************************************************************/
-							  /* IMPLEMENTATION */
+						/* IMPLEMENTATION of ABSTRACT CLASS */
 	
 	/**
 	 * Implement Initialize Game

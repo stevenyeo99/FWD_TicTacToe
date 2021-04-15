@@ -19,7 +19,7 @@ public class GameController {
 	@Autowired
 	private IGameProcess ticTacToeRulesImpl;
 	
-	@RequestMapping("/TicTacToe")
+	@RequestMapping("/ticTacToe")
 	public String displayForm(@ModelAttribute("game") Game game) {
 		
 		if (game.getStatusType() == null) {
@@ -29,20 +29,20 @@ public class GameController {
 		return "tic_tac_toe";
 	}
 	
-	@RequestMapping("/QuitGame")
+	@RequestMapping("/quitGame")
 	public String quickGame() {
 		return "redirect:/";
 	}
 	
-	@RequestMapping("/Rematch")
+	@RequestMapping("/rematch")
 	public String rematch(@ModelAttribute("game") Game game) {
 		
 		game.rematchGame();
 		
-		return "redirect:/TicTacToe";
+		return "redirect:/ticTacToe";
 	}
 	
-	@RequestMapping("/TicTacToe/MarkSquare")
+	@RequestMapping("/ticTacToe/markSquare")
 	public @ResponseBody ResponseEntity<Game> markSquare(@ModelAttribute("game") Game game, @RequestParam(required = true) int x, @RequestParam(required = true) int y) {
 		
 		if (game.getBoard().checkSquareIsMarkedByPosition(x, y)) {

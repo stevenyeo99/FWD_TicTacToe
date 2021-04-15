@@ -30,7 +30,7 @@ function btnRematchEvent() {
 			return false;
 		}
 		
-		location.href = "/Rematch";
+		location.href = "/rematch";
 	});
 }
 
@@ -54,7 +54,7 @@ function markSquareEvent() {
 			
 			$.ajax({
 				type: "GET",
-				url: "/TicTacToe/MarkSquare",
+				url: "/ticTacToe/markSquare",
 				data: {x, y},
 				success: function(data) {
 					var gameObj = data;
@@ -80,6 +80,7 @@ function markSquareEvent() {
 				},
 				error: function(data) {
 					alert('This field has been selected, cannot select this field!');
+					allowRequestAPI.val('YN_Y');
 				} 
 			});
 		}
